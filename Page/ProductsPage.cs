@@ -9,7 +9,7 @@ namespace MukulsAutomationAssignment.POM
 {
     public class ProductsPage
     {
-        private IPage _page;
+        private readonly IPage _page;
         private ILocator _AddBtn => _page.Locator(".btn.btn_primary.btn_small.btn_inventory ");
         private ILocator _RemoveBtn => _page.Locator(".btn.btn_secondary.btn_small.btn_inventory");
         private ILocator _CartbagCount => _page.Locator(".shopping_cart_badge");

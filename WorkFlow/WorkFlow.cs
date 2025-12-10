@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MukulsAutomationAssignment.WorkFlow
 {
-    [TestFixture]
+   
     public class WorkFlow : GlobalSetup
     {
         [Test]
@@ -20,25 +20,25 @@ namespace MukulsAutomationAssignment.WorkFlow
             ProductsPage pp= new ProductsPage(_page);
             await pp.AddtoCart("Sauce Labs Backpack", "Sauce Labs Bike Light");
             int CartCount= await pp.CartCount();
-            Assert.That(CartCount.Equals(2));
+            Assert.That(CartCount, Is.EqualTo(2), "Cart count mismatch after adding items");
             await pp.RemoveItem();
             int CartCountAfterRemoved= await pp.CartCount();
-            Assert.That(CartCountAfterRemoved.Equals(1));
+            Assert.That(CartCountAfterRemoved, Is.EqualTo(1), "Cart count mismatch after removing items");
             await pp.ClickOnCart();
             YourCartpage yp= new YourCartpage(_page);
             string itemName= await yp.VerifyItem();
-            Assert.That(itemName.Equals("Sauce Labs Backpack"));
+            Assert.That(itemName, Is.EqualTo("Sauce Labs Backpack"), "Wrong item displayed in cart");
             await yp.ClickContinue();
             CheckoutYourInfoPage cp= new CheckoutYourInfoPage(_page);
             await cp.FillDetails("Mukul", "Bajaj", "123");
             await cp.ClickContinue();
             CheckoutOverview co = new CheckoutOverview(_page);
             string ItemName = await co.VerifyItem();
-            Assert.That(ItemName.Equals("Sauce Labs Backpack"));
+            Assert.That(ItemName, Is.EqualTo("Sauce Labs Backpack"), "Wrong item displayed in checkout overview");
             await co.ClickFinish();
             CheckoutComplete cc= new CheckoutComplete(_page);
             string msg1= await cc.ConfirmText();
-            Assert.That(msg1.Equals("Thank you for your order!"));
+            Assert.That(msg1, Is.EqualTo("Thank you for your order!"), "Order completion message mismatch");
 
         }
     }

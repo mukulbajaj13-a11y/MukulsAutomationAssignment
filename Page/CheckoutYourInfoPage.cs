@@ -9,7 +9,7 @@ namespace MukulsAutomationAssignment.POM
 {
     public class CheckoutYourInfoPage
     {
-        private IPage _page;
+        private readonly IPage _page;
         private ILocator _Fname => _page.Locator("#first-name");
         private ILocator _Lname => _page.Locator("#last-name");
         private ILocator _ZipCode => _page.Locator("#postal-code");

@@ -9,7 +9,7 @@ namespace MukulsAutomationAssignment.Page
 {
     public class CheckoutOverview
     {
-        private IPage _page;
+        private readonly IPage _page;
         private ILocator _ItemName => _page.Locator(".inventory_item_name");
         private ILocator _FinishBtn => _page.Locator("#finish");
         public CheckoutOverview(IPage page) { _page = page; }

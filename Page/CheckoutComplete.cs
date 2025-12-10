@@ -9,7 +9,7 @@ namespace MukulsAutomationAssignment.Page
 {
     public class CheckoutComplete
     {
-        private IPage _page;
+        private readonly IPage _page;
         private ILocator _ConfirmMsg => _page.Locator(".complete-header");
         private ILocator _DispatachMsg => _page.Locator(".complete-text");
         public CheckoutComplete(IPage page) { _page = page; }

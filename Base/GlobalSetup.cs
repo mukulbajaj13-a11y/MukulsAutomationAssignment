@@ -1,5 +1,6 @@
 ﻿using Microsoft.Playwright;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +29,27 @@ namespace MukulsAutomationAssignment.Base
             await _page.GotoAsync("https://www.saucedemo.com/");
         }
         [TearDown]
-        public async Task TearDown() { 
+        public async Task TearDown() {
+                var TestResult = TestContext.CurrentContext.Result.Outcome.Status;
+                if (TestResult == TestStatus.Failed) {
+                    
+                string screenshotsFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "ScreenShots");//Navigate Location of my SS folder
+                //string screenshotsFolder = Path.Combine(projectRoot, "ScreenShots");//It naviagtes inside my SS folder 
+
+                string filePath = Path.Combine(screenshotsFolder, $"{TestContext.CurrentContext.Test.Name}.png");
+                    await _page.ScreenshotAsync(new PageScreenshotOptions
+                    {
+                        Path = filePath,
+                        FullPage = true
+                    });
+            }
             await _page.Context.CloseAsync();
         }
         [OneTimeTearDown]
         public async Task OneTimeTearDown()
         {
             await _browser.CloseAsync();
-            _playwright.Dispose();
+            _playwright.Dispose();//comment added
         }
     }
 }

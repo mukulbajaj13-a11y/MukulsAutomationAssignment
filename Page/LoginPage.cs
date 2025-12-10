@@ -9,7 +9,7 @@ namespace MukulsAutomationAssignment.POM
 {
     public class LoginPage //Internal is used when used in the same soluation
     {
-        public IPage _page;
+        public readonly IPage _page;
         public LoginPage(IPage Page) { _page = Page; }
         private ILocator _usernames => _page.Locator("#login_credentials");
         private ILocator _password => _page.Locator(".login_password");
