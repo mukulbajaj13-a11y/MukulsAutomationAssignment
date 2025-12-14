@@ -21,12 +21,12 @@ namespace MukulsAutomationAssignment.POM
             _page = page;
         }
 
-        public async Task AddtoCart(string Item1,string item2) {
+        public async Task AddtoCart(string Item1,string item2,string item3) {
 
             int itemsCount = await _itemsName.CountAsync();
             for (int i = 0; i < itemsCount; i++) {
                 string CurrenItem=await _itemsName.Nth(i).InnerTextAsync();
-                if (CurrenItem==Item1 || CurrenItem==item2) {
+                if (CurrenItem==Item1 || CurrenItem==item2 || CurrenItem==item3) {
                     await _AddBtn.Nth(i).ClickAsync();
                     continue;
                 }
@@ -41,11 +41,17 @@ namespace MukulsAutomationAssignment.POM
         public async Task RemoveItem()
         {
             int ItemsAdd = await _RemoveBtn.CountAsync();
-            if (ItemsAdd > 1)
+            try
             {
-                await _RemoveBtn.Nth(1).ClickAsync();
+                for (int i = (ItemsAdd - 1); i > 0; i--)
+                {
+                    await _RemoveBtn.Nth(i).ClickAsync();
+                    continue;
+
+                }
             }
-            else {
+            catch (Exception ex)
+            {
                 throw new Exception("There are no items added to cart");
             }
         }

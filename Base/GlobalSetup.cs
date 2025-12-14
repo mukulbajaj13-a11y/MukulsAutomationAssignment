@@ -37,11 +37,11 @@ namespace MukulsAutomationAssignment.Base
                 //string screenshotsFolder = Path.Combine(projectRoot, "ScreenShots");//It naviagtes inside my SS folder 
 
                 string filePath = Path.Combine(screenshotsFolder, $"{TestContext.CurrentContext.Test.Name}.png");
-                    await _page.ScreenshotAsync(new PageScreenshotOptions
+                 /*   await _page.ScreenshotAsync(new PageScreenshotOptions
                     {
                         Path = filePath,
                         FullPage = true
-                    });
+                    });*/
             }
             await _page.Context.CloseAsync();
         }

@@ -18,9 +18,9 @@ namespace MukulsAutomationAssignment.WorkFlow
             LoginPage lp = new LoginPage(_page);
             await lp.login();
             ProductsPage pp= new ProductsPage(_page);
-            await pp.AddtoCart("Sauce Labs Backpack", "Sauce Labs Bike Light");
+            await pp.AddtoCart("Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt");
             int CartCount= await pp.CartCount();
-            Assert.That(CartCount, Is.EqualTo(2), "Cart count mismatch after adding items");
+            Assert.That(CartCount, Is.EqualTo(3), "Cart count mismatch after adding items");
             await pp.RemoveItem();
             int CartCountAfterRemoved= await pp.CartCount();
             Assert.That(CartCountAfterRemoved, Is.EqualTo(1), "Cart count mismatch after removing items");
